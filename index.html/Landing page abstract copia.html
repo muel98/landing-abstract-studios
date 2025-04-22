@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diamo voce al tuo business</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <!-- Import modello 3D viewer -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #fff; }
+    a { text-decoration: none; color: inherit; }
+    img, model-viewer { display: block; max-width: 100%; }
+
+    nav { position: fixed; top:20px; left:50%; transform: translateX(-50%);
+      max-width:1300px; width:calc(100% - 40px);
+      background: rgba(17,17,17,0.6); backdrop-filter: blur(10px);
+      display:flex; justify-content:space-between; align-items:center;
+      padding:12px 30px; border-radius:16px;
+      box-shadow:0 0 0 1px rgba(255,255,255,0.05); z-index:100;
+    }
+    .nav-logo { font-weight:800; font-size:1.3rem; }
+    .nav-links { list-style:none; display:flex; gap:30px; }
+    .nav-links li a { font-weight:500; color:#ccc; transition:color .3s; }
+    .nav-links li a:hover { color:#fff; }
+    .btn-demo { background: linear-gradient(145deg,#0061c2,#00109f);
+      padding:10px 20px; border-radius:12px; font-weight:600;
+      color:#fff; transition:background .3s;
+    }
+    .btn-demo:hover { background: linear-gradient(145deg,#00109f,#0061c2); }
+
+    .hero { position: relative; padding:160px 20px 120px; overflow:hidden; background:#0a0a0a; }
+    .hero-bg { position:absolute; inset:0; background:#0a0a0a;
+      background-image:
+        linear-gradient(0deg, rgba(255,255,255,0.05) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 2px, transparent 2px);
+      background-size:80px 80px; 
+      opacity:0.3;
+    }
+    .hero-container { display:flex; justify-content:space-between; align-items:center;
+      max-width:1300px; margin:0 auto; gap:40px; flex-wrap:wrap;
+    }
+    .hero-content { flex:1; }
+    .hero-content h1 { font-family:'Special Gothic Expanded One',sans-serif;
+      font-size:4rem; color:#0061c2; margin-bottom:16px;
+    }
+    .hero-content p { font-size:1.2rem; color:#ccc; max-width:600px; }
+    .hero-image-wrapper { flex:1; max-width:500px; }
+    @media (max-width:768px) {
+      .hero-container { flex-direction:column; text-align:center; }
+      .hero-content h1 { font-size:2.5rem; }
+    }
+
+    section { padding:80px 20px; }
+    h2 { text-align:center; margin-bottom:40px;
+      font-family:'Special Gothic Expanded One',sans-serif; font-size:25px;
+    }
+
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px; max-width:1100px; margin:0 auto; justify-items:center;
+    }
+    .card { background:#111; padding:30px; border-radius:12px;
+      box-shadow:0 4px 16px rgba(0,0,0,0.5); transition:transform .3s;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .card h3 { color:#202faf; margin-bottom:12px; font-family: "Montserrat", sans-serif; }
+
+    .pricing { display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px;
+      max-width:1100px; margin:0 auto; font-family: "Montserrat", sans-serif;
+    }
+    .pricing-card { position:relative; background:#111; padding:32px;
+      border-radius:16px; display:flex; flex-direction:column;
+      overflow:visible; box-shadow:0 4px 16px rgba(0,0,0,0.5);
+      transition:background .3s ease;
+    }
+    .pricing-card::before {
+      content:''; position:absolute; inset:-20px;
+      background:#0061c2; filter:blur(60px);
+      opacity:0; transition:opacity .3s ease; z-index:0;
+    }
+    .pricing-card.featured::before { background:#0071bc; }
+    .pricing-card:hover::before { opacity:.3; }
+    .pricing-card h3, .pricing-card p, .pricing-card ul, .pricing-card button {
+      position:relative; z-index:1;
+    }
+    .pricing-card h3 { margin-bottom:8px; }
+    .pricing-card p { margin:16px 0; color:#aaa; }
+    .pricing-card.featured p { color:#e0f8dc; }
+    .pricing-card ul { list-style:none; color:#ccc; font-size:0.9rem; padding-left:0; }
+    .pricing-card.featured ul { color:#e0f8dc; }
+    .pricing-card button {
+      margin-top:auto; margin-bottom:16px; width:100%; padding:12px;
+      border:none; border-radius:8px; font-weight:600; cursor:pointer;
+      background:#66b2ff; color:#fff;
+    }
+
+    #contact form { max-width:600px; margin:0 auto; display:grid; gap:20px; }
+    #contact input, #contact select, #contact textarea {
+      padding:14px; background:#1a1a1a; color:#fff; border:none;
+      border-radius:8px; resize:none;
+    }
+    #contact button { background:linear-gradient(145deg,#66b2ff,#3399ff);
+      padding:16px; border:none; border-radius:8px;
+      color:#fff; font-weight:600; cursor:pointer;
+    }
+    #contact button:hover { background:linear-gradient(145deg,#3399ff,#66b2ff); }
+
+    #faq { max-width:800px; margin:0 auto; }
+    #faq details { background:#111; padding:16px 24px;
+      border-radius:8px; margin-bottom:16px;
+    }
+    #faq summary { cursor:pointer; font-weight:600;
+      list-style:none; position:relative; padding-left:24px;
+    }
+    #faq summary::before {
+      content:'+'; position:absolute; left:0; top:50%; transform:translateY(-50%);
+    }
+    #faq details[open] summary::before { content:'−'; }
+    #faq details p { margin-top:12px; color:#ccc; }
+
+    footer { text-align:center; padding:40px 20px; color:#bbb;
+      border-top:1px solid #222;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo">Abstract<span></span></div>
+    <ul class="nav-links">
+      <li><a href="#services">Servizi</a></li>
+      <li><a href="#packages">Pacchetti</a></li>
+      <li><a href="#contact">Contatti</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="#contact" class="btn-demo">Prenota una call</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1>Diamo voce al tuo business</h1>
+        <p>Strategie digitali su misura per artigiani, freelance e piccole imprese.</p>
+      </div>
+      <div class="hero-image-wrapper tilt">
+        <!-- Video Hero Section with Tilt -->
+        <video src="Video sito.mp4" autoplay muted loop playsinline style="width:100%; height:auto; border-radius:24px;">
+          Il tuo browser non supporta il tag video.
+        </video>
+      </div>
+    </div>
+  </header>
+
+  <section id="services">
+    <h2>Servizi principali</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Siti web professionali</h3>
+        <p>Dal sito vetrina alla landing promozionale, su misura per il tuo stile.</p>
+      </div>
+      <div class="card">
+        <h3>Logo e identità visiva</h3>
+        <p>Palette, font e logo per comunicare chi sei davvero.</p>
+      </div>
+      <div class="card">
+        <h3>Gestione social</h3>
+        <p>Contenuti mensili, reel, grafiche e campagne per farti notare.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="packages">
+    <h2>Pacchetti su misura</h2>
+    <div class="pricing">
+      <div class="pricing-card">
+        <h3>Start Local – €490</h3>
+        <p>Sito one-page, Google Business, profili social, QR code e mini guida.</p>
+        <button>Richiedi ora</button>
+        <ul>
+          <li>🌐 Sito One-Page</li>
+          <li>📍 Google Business</li>
+          <li>📲 Profili social ottimizzati</li>
+          <li>📦 QR code + mini guida</li>
+        </ul>
+      </div>
+      <div class="pricing-card featured">
+        <h3>Immagine Completa – €990</h3>
+        <p>Sito completo, logo base, 10 template Canva, shooting base, landing stagionale.</p>
+        <button>Richiedi ora</button>
+        <ul>
+          <li>🖥️ Sito completo responsive</li>
+          <li>🎨 Logo e brand kit</li>
+          <li>📸 Shooting + template Canva</li>
+          <li>🌟 Landing stagionale</li>
+        </ul>
+      </div>
+      <div class="pricing-card">
+        <h3>Gestione Mensile – da €250/mese</h3>
+        <p>6 post + 2 reel, 1 newsletter, report mensile, supporto prioritario.</p>
+        <button>Richiedi ora</button>
+        <ul>
+          <li>6 post + 2 reel</li>
+          <li>1 newsletter mensile</li>
+          <li>Report & analisi</li>
+          <li>Supporto prioritario</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contattaci</h2>
+    <form action="https://formspree.io/f/mnqekzyw" method="POST">
+      <input type="text" name="name" placeholder="Il tuo nome" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <select name="servizio" required>
+        <option value="">Seleziona un servizio</option>
+        <option value="start">Start Local</option>
+        <option value="completo">Immagine Completa</option>
+        <option value="mensile">Gestione Mensile</option>
+      </select>
+      <textarea name="messaggio" rows="5" placeholder="Scrivi il tuo messaggio..."></textarea>
+      <button type="submit">Invia richiesta</button>
+    </form>
+  </section>
+
+  <section id="faq">
+    <h2>Domande frequenti</h2>
+    <details><summary>Quanto tempo ci vuole per realizzare un sito?</summary><p>Generalmente da 2 a 4 settimane, in base alla complessità del progetto.</p></details>
+    <details><summary>Posso modificare i contenuti del sito in autonomia?</summary><p>Sì, offriamo siti con CMS integrato e una guida personalizzata.</p></details>
+    <details><summary>Offrite supporto continuo?</summary><p>Sì, con il pacchetto Gestione Mensile offriamo assistenza e aggiornamenti continui.</p></details>
+  </section>
+
+  <footer>© 2025 Abstract Studios – Tutti i diritti riservati</footer>
+
+  <!-- Tilt effect -->
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+  <script>
+    VanillaTilt.init(document.querySelectorAll('.tilt'), { max:25, speed:400, glare:true, 'max-glare':0.2, scale:1.05 });
+  </script>
+</body>
+</html>

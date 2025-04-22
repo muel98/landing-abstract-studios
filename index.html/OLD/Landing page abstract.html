@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Agency Bologna</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: #ffffff;
+      padding: 60px 20px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      color: #777;
+    }
+    .btn {
+      background: #1f5c8c;
+      color: #fff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 1em;
+    }
+    section {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .services, .packages, .price-list, .portfolio, .about, .contact {
+      margin-bottom: 60px;
+    }
+    h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+    .three-col {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .contact form {
+      display: grid;
+      gap: 15px;
+      max-width: 600px;
+    }
+    input, select, textarea {
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #aaa;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Diamo forma digitale al tuo talento.</h1>
+    <p>Siti web, branding e social per artigiani, freelance e piccole imprese.</p>
+    <a href="#contact" class="btn">Richiedi un preventivo gratuito</a>
+  </header>
+
+  <section class="services">
+    <h2>Servizi principali</h2>
+    <div class="grid three-col">
+      <div class="card">
+        <h3>Siti web professionali</h3>
+        <p>Dal sito vetrina alla landing promozionale, su misura per il tuo stile.</p>
+      </div>
+      <div class="card">
+        <h3>Logo e identità visiva</h3>
+        <p>Palette, font e logo per comunicare chi sei davvero.</p>
+      </div>
+      <div class="card">
+        <h3>Gestione social</h3>
+        <p>Contenuti mensili, reel, grafiche e campagne per farti notare.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="packages">
+    <h2>Pacchetti su misura</h2>
+    <div class="grid three-col">
+      <div class="card">
+        <h3>Start Local – €490</h3>
+        <p>Sito one-page, Google Business, profili social, QR code e mini guida.</p>
+      </div>
+      <div class="card">
+        <h3>Immagine Completa – €990</h3>
+        <p>Sito completo, logo base, 10 template Canva, shooting base, landing stagionale.</p>
+      </div>
+      <div class="card">
+        <h3>Gestione Mensile – da €250/mese</h3>
+        <p>6 post + 2 reel, 1 newsletter, report mensile, supporto prioritario.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="price-list">
+    <h2>Servizi singoli</h2>
+    <div class="grid three-col">
+      <div class="card"><strong>Sito one-page</strong><br>€350</div>
+      <div class="card"><strong>Logo semplice</strong><br>€120</div>
+      <div class="card"><strong>Servizio fotografico base</strong><br>€190</div>
+      <div class="card"><strong>Gestione social (mensile)</strong><br>da €250</div>
+      <div class="card"><strong>Landing page</strong><br>€250</div>
+      <div class="card"><strong>Campagna Ads localizzata</strong><br>€130</div>
+    </div>
+  </section>
+
+  <section class="about">
+    <h2>Chi siamo</h2>
+    <p>Siamo una digital agency nata a Bologna con una missione semplice: aiutare artigiani, freelance e piccole attività a raccontarsi online con eleganza e autenticità. Crediamo nei dettagli, nella semplicità e nei risultati misurabili.</p>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Richiedi un preventivo</h2>
+    <form>
+      <input type="text" placeholder="Il tuo nome" required>
+      <input type="email" placeholder="Email" required>
+      <select>
+        <option>Sono interessato a...</option>
+        <option>Pacchetto Start Local</option>
+        <option>Pacchetto Immagine Completa</option>
+        <option>Gestione Mensile</option>
+        <option>Servizi singoli</option>
+      </select>
+      <textarea rows="4" placeholder="Scrivici qualcosa in più..."></textarea>
+      <button class="btn" type="submit">Invia richiesta</button>
+    </form>
+  </section>
+
+  <footer>
+    © 2025 Digital Agency Bologna – Tutti i diritti riservati
+  </footer>
+</body>
+</html>
